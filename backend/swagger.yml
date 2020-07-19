@@ -1,27 +1,86 @@
-openapi: "3.0.0"
+openapi: 3.0.0
 
 info:
-  description: "Pizza API"
-  version: "1.0.0"
-  title: "Pizza API"
+  description: Pizza API
+  version: 1.0.0
+  title: Pizza API
 
 servers:
-  - url: "/api"
+  - url: /api
 
 tags:
-  - name: "products"
-    description: "Everything about products"
+  - name: orders
+    description: Everything about orders
+  - name: products
+    description: Everything about products
 
 paths:
+
+  /orders:
+
+    get:
+      tags:
+        - orders
+      summary: Get all orders
+      responses:
+        200:
+          description: Orders array
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  products:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Product'
+
+    post:
+      tags:
+        - orders
+      summary: Create order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                address:
+                  type: object
+                  $ref: '#/components/schemas/Address'
+                productsPrice:
+                  type: integer
+                shippingPrice:
+                  type: integer
+                totalPrice:
+                  type: integer
+                productsIds:
+                  type: array
+                  items:
+                    type: integer
+      responses:
+        200:
+          description: Created order
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  order:
+                    type: object
+                    $ref: '#/components/schemas/Order'
 
   /products:
     get:
       tags:
-        - "products"
-      summary: "Get all products"
+        - products
+      summary: Get all products
       responses:
         200:
-          description: "Products array"
+          description: Products array
           content:
             application/json:
               schema:
@@ -41,20 +100,44 @@ components:
 
   schemas:
 
-    Product:
-      type: "object"
+    Order:
+      type: object
       properties:
         id:
-          type: "integer"
+          type: integer
         title:
-          type: "string"
+          type: string
         description:
-          type: "string"
+          type: string
         picture:
-          type: "string"
+          type: string
         price:
-          type: "integer"
+          type: integer
+
+    Address:
+      type: object
+      properties:
+        zipCode:
+          type: string
+        city:
+          type: string
+        street:
+          type: string
+
+    Product:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        picture:
+          type: string
+        price:
+          type: integer
 
 externalDocs:
-  description: "Find out more about Swagger"
-  url: "http://swagger.io"
+  description: Find out more about Swagger
+  url: http://swagger.io
