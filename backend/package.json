@@ -1,0 +1,26 @@
+{
+  "name": "task-pizza-order-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "start": "export NODE_ENV=development && sequelize db:create && ts-node index",
+    "start:dev": "export NODE_ENV=development && sequelize db:create && nodemon -e ts,js,yml --legacy-watch"
+  },
+  "author": "Rustem Islamuratov",
+  "license": "ISC",
+  "dependencies": {
+    "@koa/cors": "^3.1.0",
+    "dotenv": "^8.2.0",
+    "koa": "^2.13.0",
+    "koa-oas3": "^1.0.0",
+    "koa-router": "^9.1.0",
+    "mysql2": "^2.1.0",
+    "nodemon": "^2.0.4",
+    "sequelize": "^6.3.3",
+    "sequelize-cli": "^6.2.0",
+    "ts": "^0.2.2",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
+  }
+}

@@ -1,0 +1,60 @@
+openapi: "3.0.0"
+
+info:
+  description: "Pizza API"
+  version: "1.0.0"
+  title: "Pizza API"
+
+servers:
+  - url: "/api"
+
+tags:
+  - name: "products"
+    description: "Everything about products"
+
+paths:
+
+  /products:
+    get:
+      tags:
+        - "products"
+      summary: "Get all products"
+      responses:
+        200:
+          description: "Products array"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  products:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Product'
+
+components:
+
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+
+  schemas:
+
+    Product:
+      type: "object"
+      properties:
+        id:
+          type: "integer"
+        title:
+          type: "string"
+        description:
+          type: "string"
+        picture:
+          type: "string"
+        price:
+          type: "integer"
+
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
