@@ -4,7 +4,7 @@ import { BaseModel } from '../lib/base.model';
 
 
 class ProductsModel extends BaseModel {
-  attributes = ['title', 'description', 'picture', 'price'];
+  attributes = ['id', 'title', 'description', 'picture', 'price'];
  
   constructor(modelName, attributes) {
     super(modelName, attributes);

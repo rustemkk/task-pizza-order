@@ -1,0 +1,24 @@
+@import '../../index.scss';
+
+.Button {
+  @include text16;
+  height: 50px;
+  width: 100%;
+  margin: 40px 0 0 0;
+  border: 1px none;
+  border-radius: 25px;
+  color: $color4;
+  cursor: pointer;
+  outline: none;
+  font-weight: 500;
+  text-align: center;
+  box-shadow: $boxShadow;
+  background-color: $color3;
+}
+
+.IsDisabled {
+  opacity: 0.3;
+  background-color: $color4 !important;
+  color: $colorText;
+  pointer-events: none;
+}

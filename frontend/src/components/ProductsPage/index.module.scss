@@ -1,0 +1,62 @@
+@import '../../index.scss';
+
+.ProductsPage {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 12px;
+
+  .ProductPlaceholder {
+    margin: 6px;
+    max-width: 600px;
+    width: 250px;
+    flex-basis: 250px;
+    flex-grow: 1;
+  }
+
+  .Product {
+    margin: 6px;
+    max-width: 600px;
+    width: 250px;
+    flex-basis: 250px;
+    flex-grow: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.25s;
+    text-decoration: none;
+    border: 1px solid $colorBorder;
+    border-radius: 8px;
+    padding-bottom: 80px;
+
+    img {
+      width: 100%;
+      border-radius: 7px;
+    }
+
+    .Name {
+      @include text18;
+      padding: 6px;
+
+      .BigNumber {
+        @include text22;
+      }
+
+      .SmallNumber {
+        @include text12;
+      }
+    }
+
+    .Description {
+      @include text14;
+      padding: 6px;
+    }
+
+    .Actions {
+      padding: 0 12px 0 12px;
+      position: absolute;
+      bottom: 12px;
+      left: 0;
+      right: 0;
+    }
+  }
+}
