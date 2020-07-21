@@ -1,0 +1,52 @@
+$colorBlack: #000000;
+$color1: #D99F4B;
+$color2: #3D3311;
+$color3: #B6280B;
+$color4: #F6E5C1;
+$colorText: $color2;
+$colorBorder: $color4;
+$boxShadow: 0 6px 25px 0 rgba(0, 0, 0, 0.1);
+
+@mixin text22() {
+  font-family: 'Roboto', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: $colorText;
+}
+
+@mixin text18() {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: $colorText;
+}
+
+@mixin text16() {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: $colorText;
+}
+
+@mixin text14() {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: $colorText;
+}
+
+@mixin text12() {
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: $colorText;
+}
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+span {
+  color: $colorText;
+}
