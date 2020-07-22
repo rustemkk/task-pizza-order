@@ -1,0 +1,49 @@
+@import '../../index.scss';
+
+.TopBar {
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  background-color: $color4;
+  position: relative;
+  &:hover {
+    .Logo {
+      transform: scale(1.25);
+      transform: rotate(-90deg);
+    }
+  }
+
+  .Logo {
+    width: 40px;
+    vertical-align: middle;
+    margin: 10px;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .Title {
+    @include text22;
+    vertical-align: middle;
+  }
+
+  .Cart {
+    position: absolute;
+    right: 16px;
+    top: 0;
+    border: 2px solid $color3;
+    border-radius: $borderRadius;
+    height: 45px;
+    margin-top: 5px;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .CartIcon {
+      background-color: $colorText,
+    }
+
+    .PriceTag {
+      margin: 12px 0 0 6px;
+    }
+  }
+}

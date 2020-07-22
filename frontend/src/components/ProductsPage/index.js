@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { addProductToCart } from '../../slices/cartSlice';
 import { loadProducts, selectProducts } from '../../slices/productsSlice';
 import Button from '../Button';
+import PriceTag from '../PriceTag';
 import s from './index.module.scss';
 
 
@@ -11,24 +13,9 @@ const ProductsPage = () => {
   const products = useSelector(selectProducts);
   const dispatch = useDispatch();
 
-  console.log(1, products);
-
   useEffect(() => {
     dispatch(loadProducts());
   }, [dispatch]);
-
-  const renderPrice = (price) => {
-    const number1 = Math.floor(price / 100);
-    const number2 = price % 100;
-    return (
-      <span className={s.BigNumber}>
-        {number1}
-        <span className={s.SmallNumber}>
-          .{number2}
-        </span >
-      </span>
-    );
-  }
 
   return (
     <div className={s.ProductsPage}>
@@ -37,13 +24,13 @@ const ProductsPage = () => {
           <img alt={product.title} src={product.picture} />
           <span className={s.Name}>
             {`${product.title} - `}
-            {renderPrice(product.price)}
+            <PriceTag price={product.price} />
           </span>
           <span className={s.Description}>
             {product.description}
           </span>
           <span className={s.Actions}>
-            <Button label="Add to cart" />
+            <Button label="Add to cart" onClick={() => dispatch(addProductToCart({ product }))} />
           </span>
         </div>
       )}
