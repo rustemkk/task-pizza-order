@@ -1,9 +1,7 @@
-const backendEnvironment = process.env.REACT_APP_BACKEND;
+let backendUrl = process.env.REACT_APP_API_URL;
 
-let backendUrl = 'http://localhost:3000';
-
-if (backendEnvironment === 'production') {
-  backendUrl = '...';
+if (!backendUrl) {
+  backendUrl = 'http://localhost:3000';
 }
 
 export const callAPI = (method, path, body = {}) => {
