@@ -16,6 +16,10 @@ services:
       - mysql_dev_volume:/var/lib/mysql
     networks:
       - default
+    deploy:
+      resources:
+        limits:
+          memory: 512M
 
   backend_dev:
     build: ./
@@ -29,12 +33,16 @@ services:
       - "3001:3001"
     networks:
       - default
+    deploy:
+      resources:
+        limits:
+          memory: 256M
 
   frontend_dev:
     build:
       context: ./
       args:
-        - REACT_APP_API_URL=http://3.15.238.166
+        - REACT_APP_API_URL=http://18.216.162.0
     container_name: pizza_frontend
     environment:
       - IS_FRONTEND=true
@@ -46,6 +54,10 @@ services:
       - "3000:3000"
     networks:
       - default
+    deploy:
+      resources:
+        limits:
+          memory: 256M
 
   nginx:
     image: nginx:alpine
