@@ -6,11 +6,12 @@
   padding: 12px;
 
   .ProductPlaceholder {
-    margin: 6px;
+    margin: 0 6px;
     max-width: 600px;
     width: 250px;
     flex-basis: 250px;
     flex-grow: 1;
+    height: 0 !important;
   }
 
   .Product {
@@ -25,7 +26,7 @@
     transition: all 0.25s;
     text-decoration: none;
     border: 1px solid $colorBorder;
-    border-radius: 8px;
+    border-radius: $borderRadius;
     padding-bottom: 80px;
 
     img {

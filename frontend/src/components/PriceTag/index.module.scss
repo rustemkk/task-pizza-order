@@ -1,0 +1,9 @@
+@import '../../index.scss';
+
+.BigNumber {
+  @include text22;
+}
+
+.SmallNumber {
+  @include text12;
+}

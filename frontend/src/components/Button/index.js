@@ -18,7 +18,6 @@ const Button = ({ className, isDisabled, label, onClick }) => {
   );
 }
 
-
 Button.propTypes = {
   className: PropTypes.string,
   isDisabled: PropTypes.bool,
