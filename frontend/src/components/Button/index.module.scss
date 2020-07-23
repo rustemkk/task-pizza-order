@@ -4,7 +4,6 @@
   @include text16;
   height: 50px;
   width: 100%;
-  margin: 40px 0 0 0;
   border: 1px none;
   border-radius: 25px;
   color: $color4;
@@ -21,4 +20,5 @@
   background-color: $color4 !important;
   color: $colorText;
   pointer-events: none;
+  border: 1px solid $color3;
 }

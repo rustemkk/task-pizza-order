@@ -43,6 +43,13 @@ $borderRadius: 8px;
   color: $colorText;
 }
 
+@mixin ellipsis() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
 body {
   margin: 0;
   font-family: 'Roboto', sans-serif;

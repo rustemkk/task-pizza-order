@@ -6,11 +6,12 @@
   padding: 12px;
 
   .ProductPlaceholder {
-    margin: 6px;
+    margin: 0 6px;
     max-width: 600px;
     width: 250px;
     flex-basis: 250px;
     flex-grow: 1;
+    height: 0 !important;
   }
 
   .Product {
