@@ -1,7 +1,7 @@
 let backendUrl = process.env.REACT_APP_API_URL;
 
 if (!backendUrl) {
-  backendUrl = 'http://localhost:3000';
+  backendUrl = 'http://localhost:3001';
 }
 
 export const callAPI = (method, path, body = {}) => {

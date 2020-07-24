@@ -58,6 +58,22 @@
       bottom: 12px;
       left: 0;
       right: 0;
+      text-align: center;
+
+      .Counter {
+        margin: 0 0 10px 0;
+        
+        .PlusMinus {
+          height: 30px;
+          width: 30px;
+          margin-top: -10px;
+        }
+
+        .Count {
+          @include text22;
+          margin: 0 12px;
+        }
+      }
     }
   }
 }
