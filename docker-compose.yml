@@ -42,7 +42,7 @@ services:
     build:
       context: ./
       args:
-        - REACT_APP_API_URL=http://18.216.162.0
+        - REACT_APP_API_URL=http://3.22.200.226
     container_name: pizza_frontend
     environment:
       - IS_FRONTEND=true
