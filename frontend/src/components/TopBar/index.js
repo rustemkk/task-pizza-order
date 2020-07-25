@@ -43,7 +43,7 @@ const TopBar = () => {
             <span>Your cart is empty.</span>
           }
           {cartProducts.map(cartProduct =>
-            <div className={s.Product}>
+            <div className={s.Product} key={cartProduct.id}>
               <div className={s.Left}>
                 <span className={s.Title}>{cartProduct.title}</span>
                 <div className={s.Counter}>

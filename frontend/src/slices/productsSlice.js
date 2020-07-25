@@ -8,7 +8,7 @@ export const slice = createSlice({
   initialState: [],
   reducers: {
     loadProductsSuccess: (state, { payload: { products } }) => {
-      return [...state, ...products];
+      return products;
     },
   },
 });
