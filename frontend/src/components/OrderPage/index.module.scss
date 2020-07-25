@@ -1,0 +1,32 @@
+@import '../../index.scss';
+
+.OrderPage {
+  .Form {
+    margin: 40px auto;
+    width: calc(100% - 60px);
+    max-width: 400px;
+  }
+
+  .Total {
+    @include text18;
+    margin: 40px 21px;
+    text-align: right;
+
+    .TotalRow {
+      .PriceTag {
+        margin: 0 0 0 4px;
+        display: inline-block;
+        width: 80px;
+      }
+    }
+  }
+
+  .OrderCompleted {
+    margin: 30px auto;
+
+    .Button {
+      width: calc(100% - 60px);
+      margin: 30px;
+    }
+  }
+}

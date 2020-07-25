@@ -1,9 +1,10 @@
 import cn from 'classnames';
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import s from './index.module.scss';
-import { selectCartAmount, selectCartProducts, addProductToCart, removeProductFromCart } from '../../slices/cartSlice';
+import { selectCartPrice, selectCartProducts, addProductToCart, removeProductFromCart } from '../../slices/cartSlice';
 import PriceTag from '../PriceTag';
 import SvgIcon from '../SvgIcon';
 import Button from '../Button';
@@ -12,14 +13,17 @@ import Button from '../Button';
 const TopBar = () => {
 
   const cartProducts = useSelector(selectCartProducts);
-  const cartAmount = useSelector(selectCartAmount);
+  const cartPrice = useSelector(selectCartPrice);
   const dispatch = useDispatch();
+  const history = useHistory();
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   return (
     <div className={s.TopBar}>
-      <span className={s.Title}>Pizza time!</span>
-      <img className={s.Logo} alt="logo" src={process.env.PUBLIC_URL + '/logo512.png'} />
+      <div className={s.TitleLogo} onClick={() => history.push('/')}>
+        <span className={s.Title}>Pizza time!</span>
+        <img className={s.Logo} alt="logo" src={process.env.PUBLIC_URL + '/logo512.png'} />
+      </div>
       <div className={cn(s.Cart, isCartOpen && s.CartOpen)} onClick={() => setIsCartOpen(true)}>
         <SvgIcon
           className={s.CloseIcon}
@@ -30,9 +34,9 @@ const TopBar = () => {
           }}
           size={30}
         />
-        <div className={s.CartAmount}>
+        <div className={s.CartPrice}>
           <SvgIcon className={s.CartIcon} name="cart" size={30} />
-          <PriceTag className={s.PriceTag} price={cartAmount} />
+          <PriceTag className={s.PriceTag} price={cartPrice} />
         </div>
         <div className={s.CartProducts}>
           {cartProducts.length === 0 &&
@@ -57,7 +61,11 @@ const TopBar = () => {
             className={s.PlaceOrder}
             isDisabled={cartProducts.length === 0}
             label="Place order"
-          // onClick={() => dispatch(addProductToCart({ product: cartProduct }))} 
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsCartOpen(false);
+              history.push('/order');
+            }}
           />
         </div>
       </div>
