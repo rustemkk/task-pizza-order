@@ -1,0 +1,40 @@
+@import '../../index.scss';
+
+.FormField {
+  margin: 20px 0 0 0;
+  text-align: left;
+
+  .Label {
+    @include text14;
+    margin: 0 0 8px 21px;
+
+    .IsRequired {
+      margin: 0 0 0 4px;
+      color: $color3 !important;
+    }
+  }
+
+  .Input {
+    @include text16;
+    width: calc(100% - 40px);
+    padding: 14px 20px;
+    outline: none;
+    border: 1px solid $color4;
+    border-radius: 25px;
+    box-shadow: $boxShadow;
+    background-color: $color4;
+    -webkit-appearance: none;
+  }
+
+  .InputError {
+    border: 1px solid $color3;
+  }
+
+  .Error {
+    height: 15px;
+    margin: 6px 0 0 21px;
+    font-size: 12px;
+    text-align: left;
+    color: $color3;
+  }
+}

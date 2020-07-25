@@ -1,11 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { createSelector } from 'reselect';
 
+import history from '../history';
+import { callAPI } from '../utils';
+
 
 export const slice = createSlice({
   name: 'cart',
   initialState: {
     cartProducts: [],
+    shippingPrice: 1000,
   },
   reducers: {
     addProductToCart: (state, { payload: { product } }) => {
@@ -17,7 +21,6 @@ export const slice = createSlice({
       return state;
     },
     removeProductFromCart: (state, { payload: { product } }) => {
-      console.log(1, 'product', product);
       const productIndex = state.cartProducts.findIndex(p => p.id === product.id);
       if (productIndex === -1) {
         return state;
@@ -37,13 +40,14 @@ export const slice = createSlice({
 export const {
   addProductToCart,
   removeProductFromCart,
+  resetCart,
 } = slice.actions;
 
 export const selectCart = state => state.cart;
 
 export const selectCartProducts = state => state.cart.cartProducts;
 
-export const selectCartAmount = createSelector(
+export const selectCartPrice = createSelector(
   selectCart,
   (cart) => {
     const { cartProducts } = cart;
@@ -51,4 +55,27 @@ export const selectCartAmount = createSelector(
   }
 );
 
+export const selectShippingPrice = state => state.cart.shippingPrice;
+
 export default slice.reducer;
+
+export const createOrder = ({ name, zipCode, city, street }) => async (dispatch, getState) => {
+  try {
+    const cartProducts = selectCartProducts(getState());
+    const cartPrice = selectCartPrice(getState());
+    const shippingPrice = selectShippingPrice(getState());
+    const totalPrice = cartPrice + shippingPrice;
+    await callAPI('POST', '/orders', {
+      name,
+      address: { zipCode, city, street },
+      productsPrice: cartPrice,
+      shippingPrice,
+      totalPrice,
+      productsIds: cartProducts.map(cp => cp.id),
+    });
+    dispatch(resetCart())
+    history.push('/order-completed');
+  } catch (err) {
+    console.error('createOrderErr', err);
+  }
+}

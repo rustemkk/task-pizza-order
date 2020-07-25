@@ -14,7 +14,7 @@ const PriceTag = ({ className, price }) => {
     <span className={cn(s.BigNumber, className)}>
       ${number1}
       <span className={s.SmallNumber}>
-        .{number2}
+        .{number2 === 0 ? '00' : number2}
       </span >
     </span>
   );
