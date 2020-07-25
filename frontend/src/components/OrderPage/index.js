@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import { useForm } from '../../hooks';
-import { selectCartPrice, selectCartProducts, selectShippingPrice, createOrder } from '../../slices/cartSlice';
+import { useForm, useLocalStorage } from '../../hooks';
+import { selectCartPrice, selectShippingPrice, createOrder } from '../../slices/cartSlice';
 import Button from '../Button';
 import FormInput from '../FormInput';
 import PriceTag from '../PriceTag';
@@ -37,8 +37,12 @@ const OrderPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const form = useForm(() => dispatch(createOrder(values)), validator, {});
+  const [personalData, setPersonalData] = useLocalStorage({}, 'personalData');
+  const form = useForm(() => dispatch(createOrder(values)), validator, personalData);
   const { handleSubmit, values } = form;
+  useEffect(() => {
+    return () => setPersonalData(values);
+  }, [setPersonalData, values]);
 
   if (history.location.pathname === '/order-completed') {
     return (
