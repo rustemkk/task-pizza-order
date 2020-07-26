@@ -71,9 +71,9 @@ export const createOrder = ({ name, zipCode, city, street }) => async (dispatch,
       productsPrice: cartPrice,
       shippingPrice,
       totalPrice,
-      productsIds: cartProducts.map(cp => cp.id),
+      products: cartProducts,
     });
-    dispatch(resetCart())
+    dispatch(resetCart());
     history.push('/order-completed');
   } catch (err) {
     console.error('createOrderErr', err);

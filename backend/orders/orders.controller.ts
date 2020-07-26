@@ -9,9 +9,11 @@ async function getOrders(ctx: any) {
 }
 
 async function createOrder(ctx: any) {
-  const { name, address, productsPrice, shippingPrice, totalPrice, productsIds } = ctx.request.body;
+  const { name, address, productsPrice, shippingPrice, totalPrice, products } = ctx.request.body;
   let order = await OrdersModel.create({ name, address, productsPrice, shippingPrice, totalPrice });
-  await order.setOrderProducts(productsIds);
+  for (const product of products) {
+    await order.addOrderProduct(product.id, { through: { count: product.count }});
+  }
   order = await OrdersModel.findById(order.id);
 
   ctx.body = { order };
