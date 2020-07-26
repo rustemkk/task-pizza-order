@@ -57,10 +57,15 @@ paths:
                   type: integer
                 totalPrice:
                   type: integer
-                productsIds:
+                products:
                   type: array
                   items:
-                    type: integer
+                    type: object
+                    properties:
+                      id: 
+                        type: integer
+                      count: 
+                        type: integer
       responses:
         200:
           description: Created order

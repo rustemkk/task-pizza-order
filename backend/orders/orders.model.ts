@@ -2,6 +2,7 @@ import { DataTypes } from 'sequelize';
 
 import { BaseModel } from '../lib/base.model';
 import ProductsModel from '../products/products.model';
+import db from '../services/db.service';
 
 
 class OrdersModel extends BaseModel {
@@ -12,8 +13,14 @@ class OrdersModel extends BaseModel {
   }
 
   associate = () => {
-    this.model.belongsToMany(ProductsModel.model, { through: 'OrderProducts', as: 'orderProducts' });
-    ProductsModel.model.belongsToMany(this.model, { through: 'OrderProducts', as: 'orderProducts' });
+    const OrderProducts = db.define('OrderProducts', {
+      count: {
+        type: DataTypes.INTEGER,
+      },
+    });
+
+    this.model.belongsToMany(ProductsModel.model, { through: OrderProducts, as: 'orderProducts' });
+    ProductsModel.model.belongsToMany(this.model, { through: OrderProducts, as: 'orderProducts' });
   };
 
   include = [
