@@ -29,8 +29,8 @@ const Counter = ({ className, count, onDecrement, onIncrement }) => {
 Counter.propTypes = {
   className: PropTypes.string,
   count: PropTypes.number.isRequired,
-  onDecrement: PropTypes.string.isRequired,
-  onIncrement: PropTypes.string.isRequired,
+  onDecrement: PropTypes.func.isRequired,
+  onIncrement: PropTypes.func.isRequired,
 };
 
 export default Counter;

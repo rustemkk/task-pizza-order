@@ -21,3 +21,14 @@ export const callAPI = (method, path, body = {}) => {
       return res;
     });
 }
+
+export const callExchangeAPI = () => {
+  return fetch('https://api.exchangeratesapi.io/latest', { method: 'GET' })
+    .then(res => res.json())
+    .then(res => {
+      if (res.errors) {
+        console.log('Error:', res);
+      }
+      return res;
+    });
+}

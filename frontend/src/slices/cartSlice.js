@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import { createSelector } from 'reselect';
 
 import history from '../history';
-import { callAPI } from '../utils';
+import { callAPI, callExchangeAPI } from '../utils';
+import { get } from 'lodash';
 
 
 export const slice = createSlice({
@@ -10,6 +11,7 @@ export const slice = createSlice({
   initialState: {
     cartProducts: [],
     shippingPrice: 1000,
+    usdEurRate: undefined,
   },
   reducers: {
     addProductToCart: (state, { payload: { product } }) => {
@@ -34,6 +36,9 @@ export const slice = createSlice({
     resetCart: (state) => {
       return { ...state, cartProducts: [] };
     },
+    loadCurrencyRateSuccess: (state, { payload: { rate } }) => {
+      return { ...state, usdEurRate: rate };
+    },
   },
 });
 
@@ -41,6 +46,7 @@ export const {
   addProductToCart,
   removeProductFromCart,
   resetCart,
+  loadCurrencyRateSuccess,
 } = slice.actions;
 
 export const selectCart = state => state.cart;
@@ -56,6 +62,8 @@ export const selectCartPrice = createSelector(
 );
 
 export const selectShippingPrice = state => state.cart.shippingPrice;
+
+export const selectUsdEurRate = state => state.cart.usdEurRate;
 
 export default slice.reducer;
 
@@ -77,5 +85,15 @@ export const createOrder = ({ name, zipCode, city, street }) => async (dispatch,
     history.push('/order-completed');
   } catch (err) {
     console.error('createOrderErr', err);
+  }
+}
+
+export const loadCurrencyRate = () => async (dispatch) => {
+  try {
+    const res = await callExchangeAPI();
+    const rate = 1/get(res, 'rates.USD');
+    dispatch(loadCurrencyRateSuccess({ rate }));
+  } catch (err) {
+    console.error('loadCurrencyRateErr', err);
   }
 }
