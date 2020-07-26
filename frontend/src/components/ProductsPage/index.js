@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addProductToCart, removeProductFromCart, selectCartProducts } from '../../slices/cartSlice';
 import { loadProducts, selectProducts } from '../../slices/productsSlice';
 import Button from '../Button';
+import Counter from '../Counter';
 import PriceTag from '../PriceTag';
 import s from './index.module.scss';
 
@@ -24,11 +25,11 @@ const ProductsPage = () => {
       return <Button label="Add to cart" onClick={() => dispatch(addProductToCart({ product }))} />;
     }
     return (
-      <div className={s.Counter}>
-        <Button className={s.PlusMinus} label="-" onClick={() => dispatch(removeProductFromCart({ product: product }))} />
-        <span className={s.Count}>{cartProduct.count}</span>
-        <Button className={s.PlusMinus} label="+" onClick={() => dispatch(addProductToCart({ product }))} />
-      </div>
+      <Counter
+        count={cartProduct.count}
+        onIncrement={() => dispatch(addProductToCart({ product }))}
+        onDecrement={() => dispatch(removeProductFromCart({ product }))}
+      />
     );
   }
 
