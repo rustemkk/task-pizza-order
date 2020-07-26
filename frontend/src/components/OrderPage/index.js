@@ -17,6 +17,8 @@ const validator = (values) => {
   }
   if (!values.phone) {
     errors.phone = 'Please enter Phone';
+  } else if (!/^\d+$/.test(values.phone)) {
+    errors.phone = 'Phone can contain only numbers';
   }
   if (!values.zipCode) {
     errors.zipCode = 'Please enter Zip Code';

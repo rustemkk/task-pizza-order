@@ -8,6 +8,13 @@ $colorBorder: $color4;
 $boxShadow: 0 6px 25px 0 rgba(0, 0, 0, 0.1);
 $borderRadius: 8px;
 
+@mixin text28() {
+  font-family: 'Roboto', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: $colorText;
+}
+
 @mixin text22() {
   font-family: 'Roboto', sans-serif;
   font-size: 22px;

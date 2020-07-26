@@ -1,0 +1,20 @@
+@import '../../index.scss';
+
+.Counter {
+  margin: 0 0 10px 0;
+
+  .PlusMinus {
+    height: 30px;
+    width: 30px;
+    padding: 3px 0 0 0;
+
+    .PlusMinusIcon {
+      background-color: $color4;
+    }
+  }
+
+  .Count {
+    @include text28;
+    margin: 0 12px;
+  }
+}

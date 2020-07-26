@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 
 import s from './index.module.scss';
 import { selectCartPrice, selectCartProducts, addProductToCart, removeProductFromCart } from '../../slices/cartSlice';
+import Counter from '../Counter';
 import PriceTag from '../PriceTag';
 import SvgIcon from '../SvgIcon';
 import Button from '../Button';
@@ -46,11 +47,12 @@ const TopBar = () => {
             <div className={s.Product} key={cartProduct.id}>
               <div className={s.Left}>
                 <span className={s.Title}>{cartProduct.title}</span>
-                <div className={s.Counter}>
-                  <Button className={s.PlusMinus} label="-" onClick={() => dispatch(removeProductFromCart({ product: cartProduct }))} />
-                  <span className={s.Count}>{cartProduct.count}</span>
-                  <Button className={s.PlusMinus} label="+" onClick={() => dispatch(addProductToCart({ product: cartProduct }))} />
-                </div>
+                <Counter
+                  className={s.Counter}
+                  count={cartProduct.count}
+                  onIncrement={() => dispatch(addProductToCart({ product: cartProduct }))}
+                  onDecrement={() => dispatch(removeProductFromCart({ product: cartProduct }))}
+                />
               </div>
               <div className={s.Right}>
                 <PriceTag price={cartProduct.count * cartProduct.price} />
