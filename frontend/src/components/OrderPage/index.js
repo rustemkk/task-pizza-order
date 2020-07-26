@@ -40,7 +40,7 @@ const OrderPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const [personalData, setPersonalData] = useLocalStorage({}, 'personalData');
+  const [personalData, setPersonalData] = useLocalStorage('personalData', {});
   const form = useForm(() => dispatch(createOrder(values)), validator, personalData);
   const { handleSubmit, values } = form;
   useEffect(() => {
@@ -52,7 +52,7 @@ const OrderPage = () => {
       <div className={s.OrderPage}>
         <div className={s.OrderCompleted}>
           Thank you, your order is on its way! :)
-           <Button className={s.Button} label="Back to MENU" onClick={() => history.push('/')} />
+          <Button className={s.Button} label="Back to MENU" onClick={() => history.push('/')} />
         </div>
       </div>
     );
