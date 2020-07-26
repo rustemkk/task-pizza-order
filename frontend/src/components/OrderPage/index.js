@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { useForm, useLocalStorage } from '../../hooks';
-import { selectCartPrice, selectShippingPrice, createOrder } from '../../slices/cartSlice';
+import { selectCartPrice, selectShippingPrice, createOrder, selectUsdEurRate } from '../../slices/cartSlice';
 import Button from '../Button';
 import FormInput from '../FormInput';
 import PriceTag from '../PriceTag';
@@ -36,6 +36,7 @@ const OrderPage = () => {
 
   const cartPrice = useSelector(selectCartPrice);
   const shippingPrice = useSelector(selectShippingPrice);
+  const usdEurRate = useSelector(selectUsdEurRate);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -50,7 +51,7 @@ const OrderPage = () => {
     return (
       <div className={s.OrderPage}>
         <div className={s.OrderCompleted}>
-          Thank you, your order is on its way! 🙂
+          Thank you, your order is on its way! :)
            <Button className={s.Button} label="Back to MENU" onClick={() => history.push('/')} />
         </div>
       </div>
@@ -105,14 +106,20 @@ const OrderPage = () => {
           <div className={s.TotalRow}>
             Products price:
             <PriceTag className={s.PriceTag} price={cartPrice} />
+            {' / '}
+            <PriceTag className={s.PriceTagEur} currencyLabel="€" price={Math.round(cartPrice * usdEurRate)} />
           </div>
           <div className={s.TotalRow}>
             Delivery price:
             <PriceTag className={s.PriceTag} price={shippingPrice} />
+            {' / '}
+            <PriceTag className={s.PriceTagEur} currencyLabel="€" price={Math.round(shippingPrice * usdEurRate)} />
           </div>
           <div className={s.TotalRow}>
             Order Total:
             <PriceTag className={s.PriceTag} price={cartPrice + shippingPrice} />
+            {' / '}
+            <PriceTag className={s.PriceTagEur} currencyLabel="€" price={Math.round((cartPrice + shippingPrice) * usdEurRate)} />
           </div>
         </div>
         <Button className={s.Button} label="Place order" />
